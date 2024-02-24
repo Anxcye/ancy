@@ -1,0 +1,9 @@
+# The following settings are for MyBatis mapping
+# Specify MyBatis Mapper files
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+# Specify MyBatis entity directory
+  type-aliases-package: com.ancy.mybatis.entity
+# Application server WEB access port
+server:
+  port: 8080
