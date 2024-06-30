@@ -1,5 +1,16 @@
 # ancy-blog
 
+预计
+一级路由：
+- 首页 `/home`、 `/`
+- 文章 `/article`
+- 日常 `/daily`
+- 留言 `/message`
+- 关于 `/about`
+
+
+---
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -30,6 +41,12 @@ pnpm dev
 
 ```sh
 pnpm build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+pnpm test:unit
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
