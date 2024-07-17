@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
-const apiUrl = import.meta.env.DEV
-  ? 'http://localhost:8083'
-  : 'https://api.ancy.com'
+const apiUrl = import.meta.env.DEV ? '/api' : '/api'
 
 const instance = axios.create({
   baseURL: apiUrl,

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  ancy-mysql:
+    image: mysql:8.0.31
+    restart: always
+    container_name: ancy-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql-conf:/etc/mysql/conf.d
+      - mysql-data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+      - ./ancy.sql:/docker-entrypoint-initdb.d/ancy.sql
+    networks:
+      - ancy-network
+
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: ancy-backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    networks:
+      - ancy-network
+
+  ancy-nginx:
+    image: nginx:1.26.1
+    restart: always
+    container_name: ancy-nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/logs:/var/log/nginx
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - ancy-network
+
+networks:
+  ancy-network:
+    driver: bridge
+
+volumes:
+  mysql-conf:
+  mysql-data:
