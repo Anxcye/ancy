@@ -1,7 +1,7 @@
   ancy:
     datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      host: localhost
+      host: ${MYSQL_HOST}
       port: 3306
       database: ancy
       username: root

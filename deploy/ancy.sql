@@ -1,3 +1,5 @@
+create database if not exists ancy default character set utf8mb4 collate utf8mb4_general_ci;
+
 create table t_article
 (
     id          int auto_increment comment 'primary key'
