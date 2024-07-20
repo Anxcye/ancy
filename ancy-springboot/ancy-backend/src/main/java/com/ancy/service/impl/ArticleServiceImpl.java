@@ -23,7 +23,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         BeanUtils.copyProperties(articleDTO, article);
 
-        article.setCreatTime(LocalDateTime.now());
+        article.setCreateTime(LocalDateTime.now());
         article.setUpdateTime(LocalDateTime.now());
         article.setIsDelete(0);
         articleMapper.insertArticle(article);
