@@ -20,11 +20,11 @@ public class ArticleController {
     private ArticleService articleService;
 
     @ApiOperation("获取所有文章")
-    @GetMapping
+    @GetMapping("/all")
     public Result<List<articleDTO>> selectArticles() {
-        List<articleDTO> articleDTOList = articleService.userSelect();
-        return Result.success(articleDTOList);
+        return Result.success(articleService.userSelect());
     }
+
 
 //    public Result
 

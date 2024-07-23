@@ -5,13 +5,23 @@ spring:
   profiles:
     active: dev
   datasource:
-      driver-class-name: ${ancy.datasource.driver-class-name}
-      url: jdbc:mysql://${ancy.datasource.host}:${ancy.datasource.port}/${ancy.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-      username: ${ancy.datasource.username}
-      password: ${ancy.datasource.password}
+    driver-class-name: ${ancy.datasource.driver-class-name}
+    url: jdbc:mysql://${ancy.datasource.host}:${ancy.datasource.port}/${ancy.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${ancy.datasource.username}
+    password: ${ancy.datasource.password}
 
-mybatis:
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: com.ancy.pojo.entity
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.ancy.pojo.entity
   configuration:
     map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      update-strategy: not_null
+      id-type: auto

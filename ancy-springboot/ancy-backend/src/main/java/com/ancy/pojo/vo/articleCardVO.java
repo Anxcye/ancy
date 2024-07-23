@@ -1,35 +1,33 @@
-package com.ancy.pojo.entity;
+package com.ancy.pojo.vo;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.ancy.pojo.entity.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("t_article")
-public class Article {
+public class articleCardVO {
+
     private Integer id;
 
     private String title;
 
     private String articleCover;
 
-    private Integer categoryId;
-
-    private String summary;
+    private String categoryName;
 
     private String content;
 
-    private Integer isDelete;
+    private String summary;
 
-    private Integer status;
-    @TableField(fill = FieldFill.INSERT)
+    private List<Tag> tags;
+
     private LocalDateTime createTime;
 
-    @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 }

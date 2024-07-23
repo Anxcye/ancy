@@ -1,6 +1,8 @@
 package com.ancy.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,23 +12,12 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("t_article")
-public class Article {
+@TableName("t_category")
+public class Category {
     private Integer id;
 
-    private String title;
+    private String categoryName;
 
-    private String articleCover;
-
-    private Integer categoryId;
-
-    private String summary;
-
-    private String content;
-
-    private Integer isDelete;
-
-    private Integer status;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
