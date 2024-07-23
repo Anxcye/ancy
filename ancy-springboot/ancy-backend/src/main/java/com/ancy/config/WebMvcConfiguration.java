@@ -17,7 +17,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Bean
     public Docket docket1() {
-        log.info("准备生成接口文档...");
+        log.info("prepare to generate admin interface document...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("Ancy 接口文档")
                 .version("2.0")
@@ -35,7 +35,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     @Bean
     public Docket docket2() {
-        log.info("准备生成接口文档...");
+        log.info("prepare to generate user interface document...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("Ancy 接口文档")
                 .version("2.0")
@@ -53,7 +53,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        log.info("开始设置静态资源映射...");
+        log.info("addResourceHandlers...");
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }

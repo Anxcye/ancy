@@ -1,20 +1,26 @@
 package com.ancy.controller.admin;
 
 import com.ancy.pojo.result.Result;
-import com.ancy.pojo.dto.articleDTO;
+import com.ancy.pojo.dto.ArticleDTO;
 import com.ancy.service.ArticleService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("adminArticleController")
 @RequestMapping("/admin/article")
+@Api(tags = "文章管理")
+@Slf4j
 public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
 
     @PostMapping
-    public Result addArticle(@RequestBody articleDTO articleDTO){
+    @ApiOperation("添加文章")
+    public Result<Void> addArticle(@RequestBody ArticleDTO articleDTO){
         articleService.addArticle(articleDTO);
         return Result.success();
     }

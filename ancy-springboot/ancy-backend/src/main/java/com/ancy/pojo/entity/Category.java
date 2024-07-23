@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Category {
     private Integer id;
 
-    private String categoryName;
+    private String name;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

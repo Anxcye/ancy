@@ -1,5 +1,6 @@
 package com.ancy;
 
+import com.ancy.mapper.ArticleMapper;
 import com.ancy.pojo.entity.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import java.util.List;
 class AncyBackendApplicationTests {
 
     @Autowired
-    private com.ancy.mapper.articleMapper articleMapper;
+    private ArticleMapper articleMapper;
 
     @Test
     void testSelect() {

@@ -1,10 +1,14 @@
 package com.ancy.controller.user;
 
-import com.ancy.pojo.dto.articleDTO;
+import com.ancy.pojo.dto.ArticleDTO;
+import com.ancy.pojo.dto.ArticlePageQueryDTO;
+import com.ancy.pojo.result.PageResult;
 import com.ancy.pojo.result.Result;
+import com.ancy.pojo.vo.ArticleCardVO;
 import com.ancy.service.ArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +18,16 @@ import java.util.List;
 
 @RestController("userArticleController")
 @RequestMapping("/articles")
-@Api(tags = "用户文章管理")
+@Api(tags = "用户文章")
+@Slf4j
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
     @ApiOperation("获取所有文章")
     @GetMapping("/all")
-    public Result<List<articleDTO>> selectArticles() {
-        return Result.success(articleService.userSelect());
+    public Result<PageResult<ArticleCardVO>> selectArticles(ArticlePageQueryDTO articlePageQueryDTO) {
+        return Result.success(articleService.userSelect(articlePageQueryDTO));
     }
 
 

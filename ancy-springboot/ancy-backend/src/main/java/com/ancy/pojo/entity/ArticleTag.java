@@ -12,11 +12,13 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("t_tag")
-public class Tag {
+@TableName("t_article_tag")
+public class ArticleTag {
     private Integer id;
 
-    private String name;
+    private Integer articleId;
+
+    private Integer tagId;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

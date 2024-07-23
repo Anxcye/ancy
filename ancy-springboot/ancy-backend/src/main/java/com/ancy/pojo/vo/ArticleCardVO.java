@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class articleCardVO {
+public class ArticleCardVO {
 
     private Integer id;
 
@@ -19,13 +19,13 @@ public class articleCardVO {
 
     private String articleCover;
 
-    private String categoryName;
+    private CategoryVO category;
 
     private String content;
 
     private String summary;
 
-    private List<Tag> tags;
+    private List<TagVO> tags;
 
     private LocalDateTime createTime;
 
