@@ -5,7 +5,7 @@
 支持 Docker compose 一键部署。
 
 预计使用的技术栈：
- - 用户访问后端：Spring Boot (kotlin)
+ - 用户访问后端：Spring Boot
  - 管理员访问后端：Golang
  - 前端：Vue3 + TypeScript
  - 数据库：MySQL
