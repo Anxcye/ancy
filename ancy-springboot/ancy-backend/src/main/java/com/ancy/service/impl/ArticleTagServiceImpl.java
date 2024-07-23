@@ -31,7 +31,7 @@ public class ArticleTagServiceImpl implements ArticleTagService {
     }
 
     @Override
-    public List<TagVO> selectByArticleId(Integer id) {
+    public List<TagVO> selectTagsByArticleId(Integer id) {
         List<ArticleTag> articleTags = articleTagMapper.selectTagsByArticleId(id);
         return articleTags.stream().map(articleTag -> {
             Integer tagId = articleTag.getTagId();
@@ -40,5 +40,11 @@ public class ArticleTagServiceImpl implements ArticleTagService {
             BeanUtils.copyProperties(tag, tagVO);
             return tagVO;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Integer> selectArticleIdsByTagId(Integer tagId) {
+        List<ArticleTag> articleTags = articleTagMapper.selectByTagId(tagId);
+        return articleTags.stream().map(ArticleTag::getArticleId).collect(Collectors.toList());
     }
 }

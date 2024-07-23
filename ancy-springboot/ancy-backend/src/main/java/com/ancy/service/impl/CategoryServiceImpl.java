@@ -10,6 +10,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Slf4j
 @Service
@@ -33,6 +36,16 @@ public class CategoryServiceImpl implements CategoryService {
         BeanUtils.copyProperties(category, categoryVO);
 
         return categoryVO;
+    }
+
+    @Override
+    public List<CategoryVO> list() {
+        List<Category> categories = categoryMapper.selectList(null);
+        return categories.stream().map(category -> {
+            CategoryVO categoryVO = new CategoryVO();
+            BeanUtils.copyProperties(category, categoryVO);
+            return categoryVO;
+        }).collect(Collectors.toList());
     }
 
 

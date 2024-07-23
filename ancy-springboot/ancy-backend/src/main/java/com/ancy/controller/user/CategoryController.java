@@ -1,4 +1,4 @@
-package com.ancy.controller.admin;
+package com.ancy.controller.user;
 
 import com.ancy.pojo.dto.CategoryDTO;
 import com.ancy.pojo.result.Result;
@@ -14,19 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("adminCategoryController")
-@RequestMapping("/admin/categories")
+@RestController("usewrCategoryController")
+@RequestMapping("/categories")
 @Api(tags = "分类管理")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-
-    @ApiOperation("添加分类")
-    @PostMapping
-    public Result<Void> addCategory(CategoryDTO categoryDTO) {
-        categoryService.addCategory(categoryDTO);
-       return Result.success();
-    }
 
     @GetMapping
     @ApiOperation("获取分类列表")
@@ -34,4 +27,5 @@ public class CategoryController {
         List<CategoryVO> categoryVOList = categoryService.list();
         return Result.success(categoryVOList);
     }
+
 }

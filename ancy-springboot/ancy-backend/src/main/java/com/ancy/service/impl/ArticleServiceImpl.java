@@ -61,8 +61,15 @@ public class ArticleServiceImpl implements ArticleService {
         articlePage.addOrder(new OrderItem().setColumn("create_time").setAsc(false));
         LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>()
                 .eq(Article::getIsDelete, 0)
-                .eq(Article::getStatus, 0)
-                .eq(Article::getCategoryId, articlePageQueryDTO.getCategoryId());
+                .eq(Article::getStatus, 0);
+
+        if (articlePageQueryDTO.getCategoryId() != null)
+            queryWrapper.eq(Article::getCategoryId, articlePageQueryDTO.getCategoryId());
+
+        if (articlePageQueryDTO.getTagId() != null){
+            List<Integer> articleIds = articleTagService.selectArticleIdsByTagId(articlePageQueryDTO.getTagId());
+            queryWrapper.in(Article::getId, articleIds);
+        }
 
 
         articleMapper.selectPage(articlePage, queryWrapper);
@@ -75,7 +82,7 @@ public class ArticleServiceImpl implements ArticleService {
             CategoryVO category = categoryService.selectCategoryById(article.getCategoryId());
             articleCardVO.setCategory(category);
             // tags
-            List<TagVO> tagIds = articleTagService.selectByArticleId(article.getId());
+            List<TagVO> tagIds = articleTagService.selectTagsByArticleId(article.getId());
             articleCardVO.setTags(tagIds);
             return articleCardVO;
         }).collect(Collectors.toList());

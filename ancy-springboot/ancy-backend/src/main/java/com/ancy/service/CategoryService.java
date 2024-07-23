@@ -4,6 +4,8 @@ package com.ancy.service;
 import com.ancy.pojo.dto.CategoryDTO;
 import com.ancy.pojo.vo.CategoryVO;
 
+import java.util.List;
+
 public interface CategoryService {
 
 
@@ -11,4 +13,5 @@ public interface CategoryService {
 
     CategoryVO selectCategoryById(Integer id);
 
+    List<CategoryVO> list();
 }

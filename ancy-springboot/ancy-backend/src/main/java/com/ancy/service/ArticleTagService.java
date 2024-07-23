@@ -10,5 +10,7 @@ public interface ArticleTagService {
 
     void addArticleTag(List<ArticleTag> articleTags);
 
-    List<TagVO> selectByArticleId(Integer id);
+    List<TagVO> selectTagsByArticleId(Integer id);
+
+    List<Integer> selectArticleIdsByTagId(Integer tagId);
 }

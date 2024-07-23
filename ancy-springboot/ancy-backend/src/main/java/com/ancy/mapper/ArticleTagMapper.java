@@ -12,4 +12,7 @@ import java.util.List;
 public interface ArticleTagMapper extends BaseMapper<ArticleTag> {
     @Select("select * from t_article_tag where article_id = #{articleId} ")
     List<ArticleTag> selectTagsByArticleId(@Param("articleId") Integer articleId);
+
+    @Select("select * from t_article_tag where tag_id = #{tagId}")
+    List<ArticleTag> selectByTagId(Integer tagId);
 }
