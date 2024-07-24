@@ -10,6 +10,7 @@ spring:
     username: ${ancy.datasource.username}
     password: ${ancy.datasource.password}
 
+
 #mybatis:
 #  mapper-locations: classpath:mapper/*.xml
 #  type-aliases-package: com.ancy.pojo.entity

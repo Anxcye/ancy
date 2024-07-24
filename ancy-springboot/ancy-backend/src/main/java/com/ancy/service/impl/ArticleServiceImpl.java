@@ -6,6 +6,7 @@ import com.ancy.pojo.entity.Article;
 import com.ancy.pojo.entity.ArticleTag;
 import com.ancy.pojo.result.PageResult;
 import com.ancy.pojo.vo.ArticleCardVO;
+import com.ancy.pojo.vo.ArticleVO;
 import com.ancy.pojo.vo.CategoryVO;
 import com.ancy.pojo.vo.TagVO;
 import com.ancy.service.ArticleService;
@@ -66,7 +67,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (articlePageQueryDTO.getCategoryId() != null)
             queryWrapper.eq(Article::getCategoryId, articlePageQueryDTO.getCategoryId());
 
-        if (articlePageQueryDTO.getTagId() != null){
+        if (articlePageQueryDTO.getTagId() != null) {
             List<Integer> articleIds = articleTagService.selectArticleIdsByTagId(articlePageQueryDTO.getTagId());
             queryWrapper.in(Article::getId, articleIds);
         }
@@ -76,6 +77,7 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> records = articlePage.getRecords();
 
         List<ArticleCardVO> collect = records.stream().map(article -> {
+
             ArticleCardVO articleCardVO = new ArticleCardVO();
             BeanUtils.copyProperties(article, articleCardVO);
             // category
@@ -89,5 +91,24 @@ public class ArticleServiceImpl implements ArticleService {
 
         return new PageResult<>(records.size(), collect);
 
+    }
+
+    @Override
+    public ArticleVO selectArticleById(String articleId) {
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>()
+                .eq(Article::getId, articleId)
+                .eq(Article::getIsDelete, 0)
+                .eq(Article::getStatus, 0);
+
+        Article article = articleMapper.selectOne(queryWrapper);
+        ArticleVO articleVO = new ArticleVO();
+        BeanUtils.copyProperties(article, articleVO);
+        // category
+        CategoryVO category = categoryService.selectCategoryById(article.getCategoryId());
+        articleVO.setCategory(category);
+        // tags
+        List<TagVO> tagIds = articleTagService.selectTagsByArticleId(article.getId());
+        articleVO.setTags(tagIds);
+        return articleVO;
     }
 }

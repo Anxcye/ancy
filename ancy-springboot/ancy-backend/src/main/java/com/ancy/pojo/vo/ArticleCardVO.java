@@ -21,8 +21,6 @@ public class ArticleCardVO {
 
     private CategoryVO category;
 
-    private String content;
-
     private String summary;
 
     private List<TagVO> tags;
