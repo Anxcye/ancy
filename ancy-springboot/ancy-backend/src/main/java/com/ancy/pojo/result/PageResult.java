@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PageResult<T> implements Serializable {
 
-    private Integer total;
+    private Long total;
     private List<T> records;
 
 }

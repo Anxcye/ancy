@@ -2,20 +2,22 @@ package com.ancy.pojo.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class ArticlePageQueryDTO {
+    @NotBlank
+    private Integer current;
+    @NotBlank
+    private Integer size;
 
-        private Integer current;
+    private String title;
 
-        private Integer size;
+    private Integer categoryId;
 
-        private String title;
+    private Integer status;
 
-        private Integer categoryId;
+    private Integer isDelete;
 
-        private Integer status;
-
-        private Integer isDelete;
-
-        private Integer tagId;
+    private Integer tagId;
 }

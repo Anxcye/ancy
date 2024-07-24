@@ -27,7 +27,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @ApiOperation("获取所有文章")
-    @GetMapping("/all")
+    @GetMapping("/list")
     public Result<PageResult<ArticleCardVO>> selectArticles(ArticlePageQueryDTO articlePageQueryDTO) {
         return Result.success(articleService.userSelect(articlePageQueryDTO));
     }

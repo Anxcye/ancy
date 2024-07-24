@@ -89,7 +89,7 @@ public class ArticleServiceImpl implements ArticleService {
             return articleCardVO;
         }).collect(Collectors.toList());
 
-        return new PageResult<>(records.size(), collect);
+        return new PageResult<>(articlePage.getTotal(), collect);
 
     }
 
@@ -110,5 +110,41 @@ public class ArticleServiceImpl implements ArticleService {
         List<TagVO> tagIds = articleTagService.selectTagsByArticleId(article.getId());
         articleVO.setTags(tagIds);
         return articleVO;
+    }
+
+
+    @Override
+    public PageResult<ArticleCardVO> listArticleAdmin(ArticlePageQueryDTO articlePageQueryDTO) {
+         Page<Article> articlePage = Page.of(articlePageQueryDTO.getCurrent(), articlePageQueryDTO.getSize());
+        articlePage.addOrder(new OrderItem().setColumn("create_time").setAsc(false));
+        LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<Article>();
+
+        if (articlePageQueryDTO.getCategoryId() != null)
+            queryWrapper.eq(Article::getCategoryId, articlePageQueryDTO.getCategoryId());
+
+        if (articlePageQueryDTO.getTagId() != null) {
+            List<Integer> articleIds = articleTagService.selectArticleIdsByTagId(articlePageQueryDTO.getTagId());
+            queryWrapper.in(Article::getId, articleIds);
+        }
+
+
+        articleMapper.selectPage(articlePage, queryWrapper);
+        List<Article> records = articlePage.getRecords();
+
+        List<ArticleCardVO> collect = records.stream().map(article -> {
+
+            ArticleCardVO articleCardVO = new ArticleCardVO();
+            BeanUtils.copyProperties(article, articleCardVO);
+            // category
+            CategoryVO category = categoryService.selectCategoryById(article.getCategoryId());
+            articleCardVO.setCategory(category);
+            // tags
+            List<TagVO> tagIds = articleTagService.selectTagsByArticleId(article.getId());
+            articleCardVO.setTags(tagIds);
+            return articleCardVO;
+        }).collect(Collectors.toList());
+
+        return new PageResult<>(articlePage.getTotal(), collect);
+
     }
 }
