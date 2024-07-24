@@ -1,9 +1,8 @@
 # ancy-admin
 ```
 login
-
 layout
-    |---数据统计 statistics
+    |---数据统计 statistic
     |---文章管理 article
     |---日常管理 daily
     |---评论管理 comment
