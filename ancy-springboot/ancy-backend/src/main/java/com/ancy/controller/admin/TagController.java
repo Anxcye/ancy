@@ -4,8 +4,8 @@ import com.ancy.pojo.dto.TagDTO;
 import com.ancy.pojo.result.Result;
 import com.ancy.pojo.vo.TagVO;
 import com.ancy.service.TagService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +16,12 @@ import java.util.List;
 
 @RestController("adminTagController")
 @RequestMapping("/admin/tags")
-@Api(tags = "标签管理")
+@Tag(name = "标签管理")
 public class TagController {
     @Autowired
     private TagService tagService;
 
-    @ApiOperation("添加标签")
+    @Operation(summary = "添加标签")
     @PostMapping
     public Result<Void> addTags(TagDTO tagDTO) {
        tagService.addTag(tagDTO);
@@ -29,7 +29,7 @@ public class TagController {
     }
 
     @GetMapping
-    @ApiOperation("获取标签列表")
+    @Operation(summary = "获取标签列表")
     public Result<List<TagVO>> list() {
         List<TagVO> tagVOList = tagService.list();
         return Result.success(tagVOList);
