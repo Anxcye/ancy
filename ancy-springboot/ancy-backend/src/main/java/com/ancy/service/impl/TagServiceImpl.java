@@ -5,9 +5,9 @@ import com.ancy.pojo.dto.TagDTO;
 import com.ancy.pojo.entity.Tag;
 import com.ancy.pojo.vo.TagVO;
 import com.ancy.service.TagService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class TagServiceImpl implements TagService {
 
-    @Autowired
+    @Resource
     private TagMapper tagMapper;
     @Override
     public void addTag(TagDTO tagDTO) {

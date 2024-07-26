@@ -6,6 +6,7 @@ import com.ancy.pojo.vo.TagVO;
 import com.ancy.service.TagService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping("/admin/tags")
 @Tag(name = "标签管理")
 public class TagController {
-    @Autowired
+    @Resource
     private TagService tagService;
 
     @Operation(summary = "添加标签")

@@ -6,9 +6,9 @@ import com.ancy.pojo.entity.Tag;
 import com.ancy.pojo.vo.TagVO;
 import com.ancy.service.ArticleTagService;
 import com.ancy.service.TagService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 @Service
 public class ArticleTagServiceImpl implements ArticleTagService {
 
-    @Autowired
+    @Resource
     private ArticleTagMapper articleTagMapper;
 
-    @Autowired
+    @Resource
     private TagService tagService;
 
 
